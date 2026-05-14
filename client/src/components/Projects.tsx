@@ -2,41 +2,42 @@ import { useState, useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { Github, Eye } from "lucide-react";
 import dashboardImage from "@assets/generated_images/Web_dashboard_project_mockup_9ef34bbd.png";
 import ecommerceImage from "@assets/generated_images/E-commerce_project_mockup_67b9ed98.png";
-import mobileImage from "@assets/generated_images/Mobile_app_project_mockup_f8a418cb.png";
+import noteFlow from "@assets/generated_images/NoteFlow_dashboard.jpg";
 
 const projects = [
   {
     title: "Analytics Dashboard",
-    description: "A comprehensive analytics dashboard built with React, TypeScript, and D3.js. Features real-time data visualization, user management, and responsive design.",
+    description:
+      "A comprehensive analytics dashboard built with React, TypeScript. Features real-time data visualization, user management, and responsive design.",
     image: dashboardImage,
-    tags: ["React", "TypeScript", "D3.js", "Node.js", "PostgreSQL"],
-    category: "Web Application",
-    // todo: remove mock functionality - these should be real project links
-    liveUrl: "#",
-    githubUrl: "#",
+    tags: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+    category: "Web Application (Professional project)",
   },
   {
     title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard. Built using Next.js and Stripe API.",
+    description:
+      "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard. Built using Next.js.",
     image: ecommerceImage,
-    tags: ["Next.js", "Stripe", "Prisma", "TailwindCSS", "Vercel"],
-    category: "E-Commerce", 
-    // todo: remove mock functionality - these should be real project links
-    liveUrl: "#",
-    githubUrl: "#",
+    tags: ["Next.js", "Prisma", "TailwindCSS", "Vercel"],
+    category: "E-Commerce (Professional project)",
   },
   {
-    title: "Task Management App",
-    description: "Mobile-first task management application with real-time collaboration, drag-and-drop functionality, and offline support.",
-    image: mobileImage,
-    tags: ["React", "PWA", "Socket.io", "Express", "MongoDB"],
-    category: "Mobile App",
-    // todo: remove mock functionality - these should be real project links
-    liveUrl: "#",
-    githubUrl: "#",
+    title: " NoteFlow – AI-Powered Real-Time Notes App",
+    description:
+      "A modern full-stack web application that allows users to create, edit, and manage notes in real-time with a clean and intuitive interface. It integrates authentication, secure data handling, and scalable backend services.",
+    image: noteFlow,
+    tags: [
+      "Next.js (App Router)",
+      "Supabase",
+      "PostgreSQL(via Supabase)",
+      "Tailwind CSS, shadcn/ui",
+    ],
+    category: "Web App(Personal Project)",
+    liveUrl: "https://note-flow-lovat.vercel.app/",
+    githubUrl: "https://github.com/BoroHimadri/NoteFlow",
   },
 ];
 
@@ -50,7 +51,9 @@ export function Projects() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute("data-index") || "0");
+            const index = parseInt(
+              entry.target.getAttribute("data-index") || "0"
+            );
             setVisibleProjects((prev) => Array.from(new Set([...prev, index])));
           }
         });
@@ -66,10 +69,16 @@ export function Projects() {
   }, []);
 
   return (
-    <section id="projects" className="py-24 bg-muted/20" data-testid="projects-section">
+    <section
+      id="projects"
+      className="py-24 bg-muted/20"
+      data-testid="projects-section"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Featured Projects</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            Featured Projects
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A showcase of my recent work and side projects
           </p>
@@ -82,12 +91,16 @@ export function Projects() {
               ref={(el) => (refs.current[index] = el)}
               data-index={index}
               className={`group overflow-hidden hover-elevate transition-all duration-700 ${
-                visibleProjects.includes(index) ? "animate-slide-up" : "opacity-0"
+                visibleProjects.includes(index)
+                  ? "animate-slide-up"
+                  : "opacity-0"
               }`}
               style={{ animationDelay: `${index * 0.2}s` }}
               onMouseEnter={() => setHoveredProject(index)}
               onMouseLeave={() => setHoveredProject(null)}
-              data-testid={`project-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+              data-testid={`project-${project.title
+                .toLowerCase()
+                .replace(/\s+/g, "-")}`}
             >
               {/* Project Image */}
               <div className="relative overflow-hidden h-48">
@@ -97,43 +110,53 @@ export function Projects() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   data-testid={`img-project-${index}`}
                 />
-                <div className={`absolute inset-0 bg-black/60 flex items-center justify-center gap-3 transition-opacity duration-300 ${
-                  hoveredProject === index ? "opacity-100" : "opacity-0"
-                }`}>
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    className="backdrop-blur-sm"
-                    onClick={() => {
-                      if (project.liveUrl !== "#") {
-                        window.open(project.liveUrl, "_blank");
-                      } else {
-                        console.log(`Live demo placeholder for: ${project.title}`);
-                      }
-                    }}
-                    data-testid={`button-view-project-${index}`}
-                  >
-                    <Eye className="w-4 h-4 mr-2" />
-                    Live Demo
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    className="backdrop-blur-sm"
-                    onClick={() => {
-                      if (project.githubUrl !== "#") {
-                        window.open(project.githubUrl, "_blank");
-                      } else {
-                        console.log(`GitHub placeholder for: ${project.title}`);
-                      }
-                    }}
-                    data-testid={`button-github-project-${index}`}
-                  >
-                    <Github className="w-4 h-4 mr-2" />
-                    Code
-                  </Button>
+                <div
+                  className={`absolute inset-0 bg-black/60 flex items-center justify-center gap-3 transition-opacity duration-300 ${
+                    hoveredProject === index ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  {index === 2 && (
+                    <>
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="backdrop-blur-sm"
+                        onClick={() => {
+                          if (project.liveUrl !== "#") {
+                            window.open(project.liveUrl, "_blank");
+                          } else {
+                            console.log(
+                              `Live demo placeholder for: ${project.title}`
+                            );
+                          }
+                        }}
+                        data-testid={`button-view-project-${index}`}
+                      >
+                        <Eye className="w-4 h-4 mr-2" />
+                        Live Demo
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="backdrop-blur-sm"
+                        onClick={() => {
+                          if (project.githubUrl !== "#") {
+                            window.open(project.githubUrl, "_blank");
+                          } else {
+                            console.log(
+                              `GitHub placeholder for: ${project.title}`
+                            );
+                          }
+                        }}
+                        data-testid={`button-github-project-${index}`}
+                      >
+                        <Github className="w-4 h-4 mr-2" />
+                        Code
+                      </Button>
+                    </>
+                  )}
                 </div>
-                <Badge 
+                <Badge
                   className="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm"
                   data-testid={`badge-category-${index}`}
                 >
@@ -153,9 +176,9 @@ export function Projects() {
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag, tagIndex) => (
-                    <Badge 
-                      key={tag} 
-                      variant="outline" 
+                    <Badge
+                      key={tag}
+                      variant="outline"
                       className="text-xs"
                       data-testid={`tag-${tag.toLowerCase()}-${index}`}
                     >
@@ -165,12 +188,14 @@ export function Projects() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-2">
+                {/* <div className="flex gap-2">
                   <Button
                     variant="default"
                     size="sm"
                     className="flex-1"
-                    onClick={() => console.log(`Opening live demo: ${project.title}`)}
+                    onClick={() =>
+                      console.log(`Opening live demo: ${project.title}`)
+                    }
                     data-testid={`button-live-demo-${index}`}
                   >
                     <ExternalLink className="w-3 h-3 mr-2" />
@@ -179,19 +204,21 @@ export function Projects() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => console.log(`Opening GitHub: ${project.title}`)}
+                    onClick={() =>
+                      console.log(`Opening GitHub: ${project.title}`)
+                    }
                     data-testid={`button-view-code-${index}`}
                   >
                     <Github className="w-3 h-3" />
                   </Button>
-                </div>
+                </div> */}
               </div>
             </Card>
           ))}
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
+        {/* <div className="text-center mt-16">
           <p className="text-muted-foreground mb-6">
             Want to see more of my work?
           </p>
@@ -204,7 +231,7 @@ export function Projects() {
             <Github className="w-4 h-4 mr-2" />
             View All Projects on GitHub
           </Button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -6,25 +6,17 @@ import profileImage from "@assets/generated_images/portfolio_img.jpg";
 
 const timelineEvents = [
   {
-    id: "timeline:2022",
-    year: "2022",
-    title: "React & TypeScript",
-    description:
-      "Dove deep into React ecosystem, learned TypeScript, and built several projects.",
-    icon: Code,
-  },
-  {
     id: "timeline:2023-2024",
     year: "2023-2024",
-    title: "Professional Experience",
+    title: "Experience",
     description:
-      "Working on complex web applications,designed & developed IOT sensor monitoring dashboard panels and mentoring newcomers at NavPrayukti Pvt. Ltd.",
+      "Working on complex web applications,designed & developed IOT sensor monitoring dashboard panels and mentoring newcomers at agrisage (formerly NavPrayukti Pvt. Ltd.)",
     icon: MapPin,
   },
   {
     id: "timeline:2024-2025",
-    year: "2024-2025",
-    title: "Professional Experience",
+    year: "2024-present",
+    title: "Experience",
     description:
       " Developed a smart mushroom cultivation dashboard that integrates real-time sensor monitoring and daily actionable guides—empowering growers to optimize button mushroom production with turnkey growhouse solutions ,Developed End-to-end Farmer Producer Company suite of admin, regional, CEO, FIG, and farmer apps that digitizes farmer data, assets, and field records in one connected system in Aiflux Innovations Pvt. Ltd.",
     icon: Coffee,
@@ -92,7 +84,7 @@ export function About() {
                     Hybrid
                   </Badge>
                   <Badge variant="secondary" data-testid="badge-experience">
-                    <Calendar className="w-3 h-3 mr-1" />2 Years Experience
+                    <Calendar className="w-3 h-3 mr-1" />3 Years Experience
                   </Badge>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -150,7 +142,7 @@ export function About() {
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-16">
           {[
-            { label: "Years Experience", value: "2+" },
+            { label: "Years Experience", value: "3" },
             { label: "Projects Built", value: "8+" },
             { label: "Technologies", value: "8+" },
             { label: "Coffee Cups", value: "∞" },

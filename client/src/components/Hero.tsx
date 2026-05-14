@@ -77,7 +77,7 @@ export function Hero() {
 
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
             I'm a passionate frontend developer with{" "}
-            <strong>2 years of experience</strong> building modern web
+            <strong>3 years of experience</strong> building modern web
             applications using React, Next.js, Node.js, and cutting-edge
             technologies.
           </p>
